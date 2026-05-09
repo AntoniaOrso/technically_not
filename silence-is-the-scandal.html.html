@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silence is the Scandal — Technically Not</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap');
+:root {
+  --ink:#1a1a1a;--paper:#f4f1eb;--warm:#e8e3d8;--rule:#c8c0b0;
+  --accent:#b85c38;--dim:#8a8278;
+  --mono:'DM Mono',monospace;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;min-height:100vh;}
+
+/* HEADER */
+.site-header{border-bottom:1px solid var(--rule);padding:0 40px;position:sticky;top:0;background:var(--paper);z-index:50;}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.site-name{font-family:var(--serif);font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);text-decoration:none;}
+.site-name em{font-style:italic;color:var(--accent);}
+nav{display:flex;gap:28px;}
+nav a{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--dim);text-decoration:none;text-transform:lowercase;transition:color 0.2s;}
+nav a:hover{color:var(--ink);}
+
+/* POST */
+.post-wrap{max-width:720px;margin:0 auto;padding:64px 40px 100px;opacity:0;animation:fadeIn 0.8s ease 0.1s forwards;}
+
+.post-section{font-family:var(--mono);font-size:9px;letter-spacing:0.3em;color:var(--accent);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.post-section::before{content:'';width:24px;height:1px;background:var(--accent);display:inline-block;}
+
+.post-title{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.08;letter-spacing:-0.02em;margin-bottom:24px;}
+
+.post-meta{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.15em;display:flex;gap:20px;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--rule);}
+.post-meta span::before{content:'// ';}
+
+.post-body{font-size:16px;line-height:1.9;color:#2a2520;}
+.post-body p{margin-bottom:1.5em;}
+.post-body p:last-child{margin-bottom:0;}
+.post-body h2{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin:2.5em 0 0.8em;letter-spacing:-0.01em;}
+.post-body strong{font-weight:600;}
+
+.editors-note{background:var(--warm);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:48px;}
+.editors-note-label{font-family:var(--mono);font-size:9px;letter-spacing:0.25em;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:10px;}
+.editors-note p{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--dim);font-style:italic;}
+
+.afterthought{background:var(--warm);border-left:3px solid var(--rule);padding:28px 24px;margin-top:48px;margin-bottom:0;}
+.afterthought-label{font-family:var(--mono);font-size:9px;letter-spacing:0.25em;color:var(--dim);text-transform:uppercase;display:block;margin-bottom:12px;}
+.afterthought p{font-family:var(--mono);font-size:12px;line-height:1.75;color:#5a5550;margin-bottom:1em;}
+.afterthought p:last-child{margin-bottom:0;}
+
+.post-footer{margin-top:64px;padding-top:32px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;}
+.back-link{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;color:var(--accent);text-decoration:none;text-transform:uppercase;}
+.back-link:hover{color:var(--ink);}
+.post-tag{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:var(--dim);text-transform:uppercase;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:48px 40px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-family:var(--serif);font-size:1.2rem;font-weight:700;font-style:italic;}
+.footer-note{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.1em;}
+.footer-note em{color:var(--accent);font-style:normal;}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:600px){
+  .site-header{padding:0 20px;}
+  .post-wrap{padding:40px 20px 80px;}
+  nav{display:none;}
+  .footer-inner{flex-direction:column;gap:16px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="site-name">Technically <em>Not</em></a>
+    <nav>
+      <a href="index.html#obvious">technically obvious</a>
+      <a href="index.html#asked">nobody asked but</a>
+      <a href="index.html#escaping">currently escaping</a>
+      <a href="index.html#dives">deep dives</a>
+    </nav>
+  </div>
+</header>
+
+<div class="post-wrap">
+
+  <div class="post-section">Technically Obvious</div>
+
+  <h1 class="post-title">Silence is the Scandal</h1>
+
+  <div class="post-meta">
+    <span>Antonia</span>
+    <span>April 2026</span>
+    <span>8 min read</span>
+  </div>
+
+  <div class="editors-note">
+    <span class="editors-note-label">// a note before we begin</span>
+    <p>Written in 2024. Published here in 2026. I sat on this for two years because I wasn't sure it was ready. Turns out it wasn't the writing that needed more time. It was the news cycle.</p>
+  </div>
+
+  <div class="post-body">
+
+    <p>There is no real debate about whether AI will displace jobs.</p>
+
+    <p>It will.</p>
+
+    <p>The World Economic Forum estimates 85 million jobs will disappear due to AI and automation. McKinsey predicts that by 2030, nearly 30% of current jobs could be automated. Customer service, transportation, logistics, content creation. Industries already seeing AI-driven layoffs. And we are just getting started.</p>
+
+    <p>So where are the headlines? Where are the emergency policy discussions? Where are the safeguards?</p>
+
+    <p>The answer is as unsettling as it is obvious. The people profiting from this disruption own the media that should be warning us. They fund the governments that should be protecting us. And they are engineering an economic shift that benefits them enormously while the rest of us scramble to figure out what just happened.</p>
+
+    <p>The fact that this is not dominating every front page is not an accident.</p>
+
+    <p>It is a strategy.</p>
+
+    <h2>The Canary Is Already Dead</h2>
+
+    <p>In coal mines, canaries were used to detect toxic gases before disaster struck. The idea was simple. If the canary dies, get out. The canary is the warning.</p>
+
+    <p>Our canary is the tech industry itself. And it is already dead. We are just not looking at it.</p>
+
+    <p>The companies that built AI are now being consumed by it. IBM announced it would not be filling 7,800 positions because AI would do the work instead. Google, Microsoft, and Meta have collectively cut tens of thousands of jobs, many of them replaced by automation. AI generated content, AI powered customer service, AI written code. Work that once paid human beings is being done by machines at scale and the people making those decisions are calling it progress.</p>
+
+    <p>And when anyone points this out the response is always the same. A rotation of three talking points delivered with remarkable consistency regardless of who is speaking.</p>
+
+    <p>AI will create more jobs than it destroys. But what kind of jobs? For whom? At what pay? And on what timeline?</p>
+
+    <p>People just need to upskill and adapt. As if a 54 year old warehouse worker can simply become an AI engineer between shifts.</p>
+
+    <p>We are just at the beginning. Let's see where it goes. Which is another way of saying let's wait until it's too late to course correct.</p>
+
+    <p>This is the same rhetoric used to justify outsourcing in the 80s, factory automation in the 90s, and the gig economy in the 2000s. Every single time we were told not to worry. Every single time the people who said don't worry were not the ones who lost their jobs.</p>
+
+    <h2>Why Nobody Is Talking About This</h2>
+
+    <p>The silence is not accidental and it is not complicated. Follow the money and it explains itself.</p>
+
+    <p>Jeff Bezos owns the Washington Post. Mark Zuckerberg controls the platforms where most Americans get their news. Elon Musk owns X. Google and Microsoft control the algorithms that decide what information spreads and what gets buried.</p>
+
+    <p>The people developing AI at the largest scale are the same people who own the channels that should be investigating its consequences. When was the last time you saw a major network run a serious in depth investigation into AI driven job displacement? Not a segment. Not a think piece. An actual sustained investigation with the urgency the story deserves.</p>
+
+    <p>The government is not much better. In 2023 Meta spent over $20 million on lobbying. Google spent $13 million. Microsoft $10 million. The biggest AI companies are not just lobbying for favorable treatment. They are writing the regulations that are supposed to keep them in check. Congress is not failing to act because they do not understand AI. They are failing to act because understanding it is not in their financial interest.</p>
+
+    <p>And the workers who will absorb the first wave of displacement — warehouse workers, cashiers, customer service representatives, truck drivers — they do not have lobbyists. They do not own newspapers. They do not have millions to donate to political campaigns. So when their jobs disappear there will be no congressional hearings. No front page stories. No emergency policy sessions.</p>
+
+    <p>There will just be silence.</p>
+
+    <p>And that silence is the scandal.</p>
+
+    <h2>The Power Imbalance Nobody Wants to Name</h2>
+
+    <p>For years we have watched tech giants consolidate power in ways that would have triggered antitrust action in any previous era. With AI that consolidation is accelerating.</p>
+
+    <p>The same companies profiting from AI control the platforms where we get our news. They spend hundreds of millions lobbying the governments that could regulate them. Their combined market value exceeds the GDP of most countries. And they have spent decades collecting our personal data, the same data now training the AI systems being used to replace us.</p>
+
+    <p>We handed them the tools. We just did not know what they were building.</p>
+
+    <p>This is not a technology story. It is a power story. A small group of people are engineering the largest economic shift in a generation and they are doing it with the explicit advantages of owning the media, owning the politicians, and owning the data. The outcome of that shift has been decided in advance. The question is just how long it takes the rest of us to notice.</p>
+
+    <h2>What Actually Needs to Happen</h2>
+
+    <p>AI driven profits should fund a baseline safety net for displaced workers. Not as charity. As a structural obligation. The companies automating away livelihoods should be taxed in proportion to the displacement they create and those funds should flow directly into retraining programs, extended unemployment protections, and long term income support for affected workers.</p>
+
+    <p>Algorithmic transparency needs to be a legal requirement not a voluntary gesture. We should know how these systems work, who they affect, and what decisions they are making on our behalf.</p>
+
+    <p>Antitrust enforcement needs to catch up to the actual market. The consolidation of media, technology, and political influence into a handful of companies is not a free market outcome. It is a regulatory failure that has been decades in the making.</p>
+
+    <p>And workers need protection now not after the displacement wave has already crested. That means union rights, wage floors, and legal frameworks that treat AI driven job loss as the foreseeable consequence it is rather than an unfortunate accident nobody saw coming.</p>
+
+    <p>This is not about stopping AI. The technology is not the villain here. Power is. Technology has always reshaped society and it has always created winners and losers. The difference this time is the scale, the speed, and the fact that the people controlling it have more consolidated power than any previous era of technological disruption ever allowed.</p>
+
+    <p>They are counting on the noise being loud enough and the news cycle being fast enough that by the time the displacement is undeniable it will also be irreversible.</p>
+
+    <p>The least we can do is pay attention.</p>
+
+    <p>And say so out loud.</p>
+
+  </div>
+
+  <div class="afterthought">
+    <span class="afterthought-label">// two years later</span>
+    <p>When I wrote this I thought I was being alarmist. I was not being alarmist. The canary I mentioned — the tech industry eating itself — has since eaten several more industries and is working on the rest. The three talking points I listed are still being delivered, word for word, by different mouths. The lobbying numbers are higher now. The job displacement numbers are higher now. The consolidated ownership of media and platform is more consolidated now.</p>
+    <p>I didn't publish this in 2024 because I wasn't sure anyone would care. I'm publishing it in 2026 because I think the window for caring is shorter than it looks.</p>
+    <p>I told you so feels less satisfying than I expected.</p>
+  </div>
+
+  <div class="post-footer">
+    <a href="index.html" class="back-link">← Back to Technically Not</a>
+    <span class="post-tag">Technically Obvious</span>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Technically Not</div>
+    <div class="footer-note">Figuring it out in public. <em>For people who know they're being lied to.</em></div>
+  </div>
+</footer>
+
+</body>
+</html>

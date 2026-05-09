@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technically Not</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap');
+:root {
+  --ink:#1a1a1a;--paper:#f4f1eb;--warm:#e8e3d8;--rule:#c8c0b0;
+  --accent:#b85c38;--dim:#8a8278;
+  --mono:'DM Mono',monospace;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;min-height:100vh;}
+
+/* HEADER */
+.site-header{border-bottom:1px solid var(--rule);padding:0 40px;position:sticky;top:0;background:var(--paper);z-index:50;}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.site-name{font-family:var(--serif);font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);text-decoration:none;}
+.site-name em{font-style:italic;color:var(--accent);}
+nav{display:flex;gap:28px;}
+nav a{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--dim);text-decoration:none;text-transform:lowercase;transition:color 0.2s;}
+nav a:hover{color:var(--ink);}
+
+/* MASTHEAD */
+.masthead{padding:52px 40px 48px;border-bottom:1px solid var(--rule);text-align:center;opacity:0;animation:fadeIn 0.8s ease 0.1s forwards;}
+.masthead-inner{max-width:680px;margin:0 auto;}
+.masthead-title{font-family:var(--serif);font-size:clamp(2.8rem,6vw,4.4rem);font-weight:900;letter-spacing:-0.03em;line-height:1;margin-bottom:16px;}
+.masthead-title em{font-style:italic;color:var(--accent);}
+.masthead-sub{font-family:var(--mono);font-size:10px;letter-spacing:0.25em;color:var(--dim);text-transform:lowercase;margin-bottom:28px;}
+.masthead-intro{font-size:15px;line-height:1.85;color:#4a4540;margin-bottom:0;}
+
+/* LOBBY */
+.lobby{max-width:1200px;margin:0 auto;padding:56px 40px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:2px;opacity:0;animation:fadeIn 0.8s ease 0.4s forwards;}
+
+.door{background:white;border:1px solid var(--warm);padding:44px 40px;cursor:pointer;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;display:flex;flex-direction:column;justify-content:space-between;min-height:260px;}
+.door::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 0.35s ease;}
+.door:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.09);}
+.door:hover::after{transform:scaleX(1);}
+.door:hover .door-enter{color:var(--ink);}
+
+.door-number{font-family:var(--mono);font-size:9px;letter-spacing:0.3em;color:var(--accent);text-transform:uppercase;margin-bottom:20px;}
+.door-title{font-family:var(--serif);font-size:1.8rem;font-weight:900;line-height:1.1;letter-spacing:-0.02em;margin-bottom:16px;}
+.door-desc{font-size:13.5px;line-height:1.8;color:#5a5550;flex:1;margin-bottom:24px;}
+.door-enter{font-family:var(--mono);font-size:10px;letter-spacing:0.2em;color:var(--dim);text-transform:uppercase;transition:color 0.2s;display:flex;align-items:center;gap:8px;}
+.door-enter::after{content:'→';}
+
+/* door accents */
+.door:nth-child(1){border-top:3px solid var(--accent);}
+.door:nth-child(2){border-top:3px solid #7a8c6e;}
+.door:nth-child(3){border-top:3px solid #5c7a8c;}
+.door:nth-child(4){border-top:3px solid #8c7a5c;}
+
+.door:nth-child(2) .door-number{color:#7a8c6e;}
+.door:nth-child(2)::after{background:#7a8c6e;}
+.door:nth-child(3) .door-number{color:#5c7a8c;}
+.door:nth-child(3)::after{background:#5c7a8c;}
+.door:nth-child(4) .door-number{color:#8c7a5c;}
+.door:nth-child(4)::after{background:#8c7a5c;}
+
+/* RECENT */
+.recent-strip{border-top:1px solid var(--rule);padding:40px;}
+.recent-inner{max-width:1200px;margin:0 auto;}
+.recent-label{font-family:var(--mono);font-size:9px;letter-spacing:0.3em;color:var(--dim);text-transform:uppercase;margin-bottom:24px;}
+.recent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.recent-card{border-left:2px solid var(--warm);padding-left:16px;cursor:pointer;}
+.recent-card:hover .recent-card-title{color:var(--accent);}
+.recent-card-section{font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:var(--accent);text-transform:uppercase;margin-bottom:8px;}
+.recent-card-title{font-family:var(--serif);font-size:14px;font-weight:700;line-height:1.35;transition:color 0.2s;margin-bottom:8px;}
+.recent-card-date{font-family:var(--mono);font-size:9px;color:var(--dim);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:48px 40px;margin-top:20px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-family:var(--serif);font-size:1.2rem;font-weight:700;font-style:italic;}
+.footer-note{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:0.1em;}
+.footer-note em{color:var(--accent);font-style:normal;}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:900px){
+  .lobby{grid-template-columns:1fr;gap:2px;}
+  .recent-grid{grid-template-columns:1fr 1fr;}
+  nav{display:none;}
+}
+@media(max-width:600px){
+  .site-header{padding:0 20px;}
+  .masthead{padding:40px 20px 36px;}
+  .lobby{padding:32px 20px;}
+  .door{min-height:200px;padding:32px 28px;}
+  .recent-strip{padding:32px 20px;}
+  .recent-grid{grid-template-columns:1fr;}
+  .footer-inner{flex-direction:column;gap:16px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="site-name">Technically <em>Not</em></a>
+    <nav>
+      <a href="#obvious">technically obvious</a>
+      <a href="#asked">nobody asked but</a>
+      <a href="#escaping">currently escaping</a>
+      <a href="#dives">deep dives</a>
+    </nav>
+  </div>
+</header>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-title">Technically <em>Not</em></div>
+    <div class="masthead-sub">figuring it out in public &nbsp;·&nbsp; for people who know they're being lied to</div>
+    <p class="masthead-intro">Hey. You found it. My name is Antonia. I am not a journalist. What I do have is a very low tolerance for being told that something complicated is too complicated for me to understand. And a suspicious mind. And apparently a lot of opinions. Pick a door.</p>
+  </div>
+</div>
+
+<div class="lobby">
+
+  <div class="door" id="obvious">
+    <div>
+      <div class="door-number">// 01</div>
+      <div class="door-title">Technically Obvious</div>
+      <div class="door-desc">It's not hidden. It's not a conspiracy. It's just sitting there between several dozen headlines of equal importance that nobody is connecting. I connect them. Sometimes I'm wrong. I will tell you when I am.</div>
+    </div>
+    <div class="door-enter">Politics &amp; current events</div>
+  </div>
+
+  <div class="door" id="asked">
+    <div>
+      <div class="door-number">// 02</div>
+      <div class="door-title">Nobody Asked But</div>
+      <div class="door-desc">Here's the thing about having opinions. At some point you run out of appropriate places to put them. This is the inappropriate place. The personal stuff. The things that usually stay in the powder room. You're in now.</div>
+    </div>
+    <div class="door-enter">Personal essays</div>
+  </div>
+
+  <div class="door" id="escaping">
+    <div>
+      <div class="door-number">// 03</div>
+      <div class="door-title">Currently Escaping</div>
+      <div class="door-desc">Everything else here is heavy. This one isn't. Books I loved, things I watched, stories that made the world go quiet for a little while. Come in. Sit down. The other stuff will still be there when you leave.</div>
+    </div>
+    <div class="door-enter">Books &amp; media</div>
+  </div>
+
+  <div class="door" id="dives">
+    <div>
+      <div class="door-number">// 04</div>
+      <div class="door-title">Deep Dives in Shallow Pools</div>
+      <div class="door-desc">The 11pm rabbit hole. The tab I shouldn't have opened. Henry VIII. Lucille Ball. The Book of James. Things that have nothing to do with anything and everything to do with everything. You know how it goes.</div>
+    </div>
+    <div class="door-enter">Tangents &amp; short takes</div>
+  </div>
+
+</div>
+
+<div class="recent-strip">
+  <div class="recent-inner">
+    <div class="recent-label">// recently filed</div>
+    <div class="recent-grid">
+      <div class="recent-card">
+        <div class="recent-card-section">Technically Obvious</div>
+        <div class="recent-card-title">Silence is the Scandal</div>
+        <div class="recent-card-date">April 2026</div>
+      </div>
+      <div class="recent-card">
+        <div class="recent-card-section">Technically Obvious</div>
+        <div class="recent-card-title">Powder Room Talk</div>
+        <div class="recent-card-date">April 2026</div>
+      </div>
+      <div class="recent-card">
+        <div class="recent-card-section">Currently Escaping</div>
+        <div class="recent-card-title">Dungeon Crawler Carl and the Art of Momentum</div>
+        <div class="recent-card-date">March 2026</div>
+      </div>
+      <div class="recent-card">
+        <div class="recent-card-section">Nobody Asked But</div>
+        <div class="recent-card-title">Siren Song</div>
+        <div class="recent-card-date">April 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Technically Not</div>
+    <div class="footer-note">Figuring it out in public. <em>For people who know they're being lied to.</em></div>
+  </div>
+</footer>
+
+</body>
+</html>
